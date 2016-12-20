@@ -5,9 +5,12 @@ import me.fahadalrabbani.calcengine.Adder;
 import me.fahadalrabbani.calcengine.CalculateHelper;
 import me.fahadalrabbani.calcengine.CalculatorBase;
 import me.fahadalrabbani.calcengine.Divider;
+import me.fahadalrabbani.calcengine.DynamicHelper;
 import me.fahadalrabbani.calcengine.InvalidStatementException;
 import me.fahadalrabbani.calcengine.MathEquation;
+import me.fahadalrabbani.calcengine.MathProcessing;
 import me.fahadalrabbani.calcengine.Multiplier;
+import me.fahadalrabbani.calcengine.PowerOf;
 import me.fahadalrabbani.calcengine.Subtracter;
 
 public class Main {
@@ -16,7 +19,23 @@ public class Main {
 
         //useMathEquation();
         //useBaseCalculation();
+        //useCalculatorHelper():
 
+        String[] statements = {
+                "add 25.0 92.0",
+                "power 5.0 2.0",
+        };
+
+        DynamicHelper helper = new DynamicHelper(new MathProcessing[]{
+                new Adder(),new PowerOf()
+        });
+        for(String statement: statements){
+            String output = helper.process(statement);
+            System.out.println(output);
+        }
+    }
+
+    static void useCalculatorHelper(){
         String[] statements = {
                 "add 1.0",//incorrect number of values
                 "add xx 25.0",//non-numeric data
@@ -38,7 +57,6 @@ public class Main {
                 }
             }
         }
-
     }
 
     static void useMathEquation(){
